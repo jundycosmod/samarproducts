@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_products" value="name:product_id;datatype:int,name:product_code;datatype:string,name:product_name;datatype:string,name:product_description;datatype:string,name:product_type;datatype:string,name:price;datatype:int" />
+	<infoitem key="UD_products2" value="name:product_id;datatype:int,name:product_code;datatype:string,name:product_name;datatype:string,name:product_description;datatype:string,name:product_type;datatype:string,name:price;datatype:int" />
+	<infoitem key="UD_products3" value="name:product_id;datatype:int,name:product_code;datatype:string,name:product_name;datatype:string,name:product_description;datatype:string,name:product_type;datatype:string,name:price;datatype:int" />
+	<infoitem key="UD_cart" value="name:cart_id;datatype:int,name:user_id;datatype:int,name:product_id;datatype:int" />
+	<infoitem key="UD_check_quantity" value="name:cart_id;datatype:int,name:user_id;datatype:int,name:product_id;datatype:int,name:quantity;datatype:int" />
+</info>
