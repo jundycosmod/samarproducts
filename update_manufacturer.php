@@ -28,11 +28,11 @@ $colname_update_manufacturer = "-1";
 if (isset($_GET['id'])) {
   $colname_update_manufacturer = (get_magic_quotes_gpc()) ? $_GET['id'] : addslashes($_GET['id']);
 }
-mysql_select_db($database_akonsudoy, $akonsudoy);
+
 $query_update_manufacturer = sprintf("SELECT * FROM manufacturers WHERE id = %s", $colname_update_manufacturer);
-$update_manufacturer = mysql_query($query_update_manufacturer, $akonsudoy) or die(mysql_error());
-$row_update_manufacturer = mysql_fetch_assoc($update_manufacturer);
-$totalRows_update_manufacturer = mysql_num_rows($update_manufacturer);
+$update_manufacturer = mysqli_query($akonsudoy, $query_update_manufacturer) or die(mysqli_error($akonsudoy));
+$row_update_manufacturer = mysqli_fetch_assoc($update_manufacturer);
+$totalRows_update_manufacturer = mysqli_num_rows($update_manufacturer);
 
 $editFormAction = $_SERVER['PHP_SELF'];
 if (isset($_SERVER['QUERY_STRING'])) {
@@ -93,18 +93,17 @@ if(!isset($_FILES['location'])){
                        GetSQLValueString($_POST['email'], "text"),
                        GetSQLValueString($_POST['id'], "int"));
 
-  mysql_select_db($database_akonsudoy, $akonsudoy);
-  $Result1 = mysql_query($updateSQL, $akonsudoy) or die(mysql_error());
+  $Result1 = mysqli_query($akonsudoy, $updateSQL) or die(mysqli_error($akonsudoy));
 }
 $colname_update_manufacturer = "-1";
 if (isset($_GET['id'])) {
   $colname_update_manufacturer = (get_magic_quotes_gpc()) ? $_GET['id'] : addslashes($_GET['id']);
 }
-mysql_select_db($database_akonsudoy, $akonsudoy);
+
 $query_update_manufacturer = sprintf("SELECT * FROM manufacturers WHERE id = %s", $colname_update_manufacturer);
-$update_manufacturer = mysql_query($query_update_manufacturer, $akonsudoy) or die(mysql_error());
-$row_update_manufacturer = mysql_fetch_assoc($update_manufacturer);
-$totalRows_update_manufacturer = mysql_num_rows($update_manufacturer);
+$update_manufacturer = mysqli_query($akonsudoy, $query_update_manufacturer) or die(mysqli_error($akonsudoy));
+$row_update_manufacturer = mysqli_fetch_assoc($update_manufacturer);
+$totalRows_update_manufacturer = mysqli_num_rows($update_manufacturer);
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -212,5 +211,4 @@ echo htmlentities($row_update_manufacturer['description']);
 </body>
 </html>
 <?php
-mysql_free_result($update_manufacturer);
-?>
+mysqli_free_result($update_manufacturer);

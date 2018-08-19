@@ -107,7 +107,7 @@ $colname_Recordset1 = "-1";
 if (isset($_POST['product_code'])) {
     $colname_Recordset1 = $_POST['product_code'];
 }
-//mysql_select_db($database_akonsudoy, $akonsudoy);
+
 $query_Recordset1 = sprintf("SELECT * FROM products WHERE product_code = %s", GetSQLValueString($colname_Recordset1, "text"));
 $Recordset1 = mysqli_query($akonsudoy, $query_Recordset1) or die(mysqli_error($akonsudoy));
 $row_Recordset1 = mysqli_fetch_assoc($Recordset1);

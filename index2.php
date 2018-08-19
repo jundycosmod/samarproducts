@@ -141,7 +141,7 @@ if (!isset($_GET['page_id'])) {
 } elseif ($_GET['page_id'] == 15) {
     include("manufacturer_list.php");
 } elseif ($_GET['page_id'] == 16) {
-    include("copmplete_registration.php");
+    include("complete_registration.php");
 } elseif (isset($_GET['page_id'])) {
     include("" . $_GET['page_id'] . ".php");
 }

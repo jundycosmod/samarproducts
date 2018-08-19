@@ -44,8 +44,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
                        GetSQLValueString($_POST['cellphone'], "int"),
                        GetSQLValueString($_POST['email'], "text"));
 
-  //mysql_select_db($database_akonsudoy, $akonsudoy);
-  $Result1 = mysql_query($insertSQL, $akonsudoy) or die(mysql_error());
+  $Result1 = mysqli_query($akonsudoy, $insertSQL) or die(mysqli_error($akonsudoy));
 }else{
 $msg = "ERROR: Failed to insert the data.";
 }

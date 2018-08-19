@@ -19,7 +19,7 @@ if (!function_exists("GetSQLValueString")) {
             $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
         }
 
-        $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+        $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($GLOBALS['akonsudoy'], $theValue) : mysqli_escape_string($GLOBALS['akonsudoy'], $theValue);
 
         switch ($theType) {
             case "text":
@@ -52,12 +52,12 @@ if (isset($_GET['action']) && $_GET['action'] == "add") {
     if (isset($_SESSION['user_id'])) {
         $colname_cart = $_SESSION['user_id'];
     }
-    mysqli_select_db($akonsudoy, $database_akonsudoy);
+
     $query_cart = sprintf("SELECT * FROM cart WHERE user_id = %s", GetSQLValueString($colname_cart, "int"));
     $cart = mysqli_query($akonsudoy, $query_cart) or die(mysqli_error());
     $row_cart = mysqli_fetch_assoc($cart);
     $totalRows_cart = mysqli_num_rows($cart);
-    mysqli_select_db($akonsudoy, $database_akonsudoy);
+
     $query_check_quantity = "SELECT * FROM cart WHERE user_id = '" . $_SESSION['user_id'] . "' AND product_id = '" . $_GET['product_id'] . "'";
     $check_quantity = mysqli_query($akonsudoy, $query_check_quantity) or die(mysqli_error($akonsudoy));
     $row_check_quantity = mysqli_fetch_assoc($check_quantity);
@@ -69,12 +69,12 @@ if (isset($_GET['action']) && $_GET['action'] == "add") {
             $row_check_quantity['quantity'] = $row_check_quantity['quantity'] + 1;
             $insertSQL = sprintf("INSERT INTO cart (user_id, product_id, quantity) VALUES (%s, %s, %s)", $_SESSION['user_id'], $_GET['product_id'], $row_check_quantity['quantity']);
 
-            //mysql_select_db($database_akonsudoy, $akonsudoy);
+
             $Result1 = mysqli_query($akonsudoy, $insertSQL) or die(mysqli_error($akonsudoy));
         } else {
             $row_check_quantity['quantity'] = $row_check_quantity['quantity'] + 1;
             $updateSQL = sprintf("UPDATE cart SET user_id=%s, product_id=%s, quantity=%s WHERE cart_id=%s", $_SESSION['user_id'], $_GET['product_id'], $row_check_quantity['quantity'], $row_check_quantity['cart_id']);
-            //mysql_select_db($database_akonsudoy, $akonsudoy);
+
             $Result2 = mysqli_query($akonsudoy, $updateSQL) or die(mysqli_error($akonsudoy));
         }
     } else {
@@ -82,12 +82,11 @@ if (isset($_GET['action']) && $_GET['action'] == "add") {
             $row_check_quantity['quantity'] = $row_check_quantity['quantity'] + 1;
             $insertSQL = sprintf("INSERT INTO cart (user_id, product_id, quantity) VALUES (%s, %s, %s)", $_SESSION['user_id'], $_GET['product_id'], $row_check_quantity['quantity']);
 
-            //mysql_select_db($database_akonsudoy, $akonsudoy);
             $Result1 = mysqli_query($akonsudoy, $insertSQL) or die(mysqli_error($akonsudoy));
         } else {
             $row_check_quantity['quantity'] = $row_check_quantity['quantity'] + 1;
             $updateSQL = sprintf("UPDATE cart SET user_id=%s, product_id=%s, quantity=%s WHERE cart_id=%s", $_SESSION['user_id'], $_GET['product_id'], $row_check_quantity['quantity'], $row_check_quantity['cart_id']);
-            //mysql_select_db($database_akonsudoy, $akonsudoy);
+
             $Result2 = mysqli_query($akonsudoy, $updateSQL) or die(mysqli_error($akonsudoy));
         }
     }
