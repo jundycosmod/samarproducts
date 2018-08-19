@@ -5,6 +5,5 @@ $deleteSQL = sprintf("DELETE FROM cart WHERE user_id=%s",
 	$user_id);
 
 mysqli_select_db($akonsudoy, $database_akonsudoy);
-$Result1 = mysqli_query($akonsudoy, $deleteSQL) or die(mysql_error());
+$Result1 = mysqli_query($akonsudoy, $deleteSQL) or die(mysqli_error($akonsudoy));
 header("Location: index2.php");
-?>

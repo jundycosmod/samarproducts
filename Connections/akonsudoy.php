@@ -15,4 +15,4 @@ $database_akonsudoy = "akonsudoy";
 $username_akonsudoy = "root";
 $password_akonsudoy = "";
 $akonsudoy = mysqli_connect($hostname_akonsudoy, $username_akonsudoy, $password_akonsudoy) or trigger_error(mysql_error(), E_USER_ERROR);
-?>
+mysqli_select_db($akonsudoy, $database_akonsudoy);
