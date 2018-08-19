@@ -29,7 +29,7 @@ if (!function_exists("GetSQLValueString")) {
 			$theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
 		}
 
-		$theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+		$theValue = function_exists("mysql_real_escape_string") ? mysqli_real_escape_string($GLOBALS['akonsudoy'], $theValue) : mysqli_escape_string($GLOBALS['akonsudoy'], $theValue);
 
 		switch ($theType) {
 		case "text":

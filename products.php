@@ -74,7 +74,7 @@ if($totalRows_check_quantity ==0){
                        $row_check_quantity['quantity'],
                        $row_check_quantity['cart_id']);
 
-  $Result2 = mysqli_query($updateSQL, $akonsudoy) or die(mysqli_error($akonsudoy));
+  $Result2 = mysqli_query($akonsudoy, $updateSQL) or die(mysqli_error($akonsudoy));
 }
 }else{
 if($totalRows_check_quantity ==0){
@@ -83,8 +83,7 @@ if($totalRows_check_quantity ==0){
                       $_SESSION['user_id'],
                        $_GET['product_id'],
 					   $row_check_quantity['quantity']);
-  
-  mysqli_select_db($akonsudoy, $database_akonsudoy);
+ 
   $Result1 = mysqli_query($akonsudoy, $insertSQL) or die(mysqli_error());
 }else{
 	$row_check_quantity['quantity'] = $row_check_quantity['quantity'] + 1;
